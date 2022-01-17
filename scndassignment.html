@@ -1,0 +1,100 @@
+<!--
+Mohammed Hisham Nassar
+201910831
+-->
+<html>
+
+<head>
+	<style>
+		h1{
+			font-family: 'Inconsolata', monospace;
+		}
+		.hd{
+			width:40%;
+			height:85%;
+			background-color:#dbdbde;
+			margin-top:5%;
+			border-radius:20%;
+			box-shadow: 10px 10px 5px #0000008c;
+		}
+		.p{
+			font-size:25px;
+			text-align:left;
+			margin-left:155px;
+		}
+		.in{
+			margin-left:20px;
+			width:250px;
+		}
+		body{
+			background-image: url('bd.jpg');
+		}
+	</style>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@600&display=swap" rel="stylesheet">
+	<title>BMI Calculator</title>
+</head>
+
+<body>
+	<center><header class="hd">
+	<br><br>
+	<h1>BMI Calculator</h1><hr>
+		<form name="myForm"><br>
+			<p class="p">Enter your weight in kg</p>
+			<input class="in" type="number" id="we" name="weight">
+			<p style="color:red;" id="par"></p>
+			<p class="p">Enter your height in cm</p>
+			<input class="in" type="number" id="he" name="height">
+			<p style="color:red;" id="par2"></p>
+			<br><br>
+			<input style="width:180px; font-size:20px; font-family: 'Inconsolata', monospace; height:75px; background-image:linear-gradient(to left, gray, black); color:white; border-radius:50%;" 
+			type="button" value="Calculate!" onclick="calc()">
+		</form>
+	</header></center>
+	<script>
+		function calc()
+		{
+			var x = document.myForm.weight.value, n=0;
+			if(x=="")
+			{
+				document.getElementById("par").innerHTML="*this field is required";
+			}
+			else if(x<20){
+				document.getElementById("par").innerHTML="*weight must not be less than 20Kg";
+			}
+			else
+			{ 
+				document.getElementById("par").innerHTML="";
+				n++;
+			}
+			var y = document.myForm.height.value;
+			if(y=="")
+			{
+				document.getElementById("par2").innerHTML="*this field is required";
+			}
+			else if(y>220){
+				document.getElementById("par2").innerHTML="*height must not exceed 220Cm";
+			}
+			else
+			{ 
+				document.getElementById("par2").innerHTML="";
+				n++;
+			}
+			if(n==2)
+			{
+				var t = (x/y/y)*10000;
+				t = t.toPrecision(3);
+				if(t<18.5)
+					alert("You are underweight");
+				else if(t>=18.5 && t<=25)
+					alert("You are in optimal shape");
+				else
+					alert("You are overweight");
+				myForm.weight.value="";
+				myForm.height.value="";
+			}
+		}
+	</script>
+</body>
+
+</html>
